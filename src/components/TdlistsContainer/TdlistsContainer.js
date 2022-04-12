@@ -8,7 +8,7 @@ class TdlistsContainer extends Component {
           <input
             className="newTask"
             type="text"
-            placeholder="Input a New Task and Press Enter"
+            placeholder="Enter new task here (then press Enter)"
             maxLength="75"
           />
         </div>
