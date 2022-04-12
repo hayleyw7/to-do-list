@@ -10,12 +10,8 @@ class TdlistsContainer extends Component {
   }
 
   componentDidMount = () => {
-    getData(
-      'https://tdlist-api.herokuapp.com/api/version1/tdlists',
-      { mode: 'no-cors' }
-    )
+    getData('https://tdlist-api.herokuapp.com/api/version1/tdlists')
     .then(data => this.setState({tdlists: data}))
-    .then(console.log('test'))
   }
 
 
