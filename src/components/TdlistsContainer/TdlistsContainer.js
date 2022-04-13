@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getData } from '../../util/apiCalls';
+import { getLists } from '../../util/apiCalls';
 
 class TdlistsContainer extends Component {
   constructor(props) {
@@ -10,11 +10,14 @@ class TdlistsContainer extends Component {
   }
 
   componentDidMount = () => {
-    getData('https://tdlist-api.herokuapp.com/api/version1/tdlists')
+    getLists()
     .then(data => this.setState({tdlists: data}))
   }
 
-
+  deleteList = (id) => {
+    const filteredLists = this.state.tdlists.filter(list => list.id !== id);
+    this.setState({ tdlists: filteredLists });
+  }
 
   render() {
     return (
@@ -35,7 +38,14 @@ class TdlistsContainer extends Component {
                 <li className="item" tdlist={tdlist} key={tdlist.id}>
                   <input className="itemCheckbox" type="checkbox" />
                   <label className="itemDisplay">{tdlist.title}</label>
-                  <span className="removeItemButton">x</span>
+
+                  <span
+                    className="removeItemButton"
+                    onClick={() => this.deleteList(tdlist.id)} 
+                  >
+                    x
+                  </span>
+
                 </li>
               );
             })}

@@ -1,12 +1,13 @@
-export const getData = (url) => {
-  return fetch(url, {
-    method : "GET",
-    mode: 'cors',
-    headers: {}
+export const getLists = () => {
+  return fetch('https://tdlist-api.herokuapp.com/api/version1/tdlists', {
+    method : "GET"
   })
-  .then(response => {
-    if (response.ok) {
-      return response.json()
-    }
-  })
+  .then(res => res.json())
 }
+
+// export const deleteList = () => {
+//   return fetch('https://tdlist-api.herokuapp.com/api/version1/tdlists', {
+//     method: 'DELETE'
+//   })
+//   .then(res => res.json())
+// }
