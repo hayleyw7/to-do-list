@@ -1,23 +1,46 @@
 import React, { Component } from "react";
-import { getLists } from '../../util/apiCalls';
+import { getLists, postList } from '../../util/apiCalls';
 
 class TdlistsContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
       tdlists: [],
+      inputValue: ""
     };
-  }
+  };
 
   componentDidMount = () => {
     getLists()
     .then(data => this.setState({tdlists: data}))
-  }
+  };
 
   deleteList = (id) => {
     const filteredLists = this.state.tdlists.filter(list => list.id !== id);
     this.setState({ tdlists: filteredLists });
+  };
+
+  createList = event => {
+    if (event.key === "Enter" && !(event.target.value === "")) {  
+      let newList = {
+        id: this.state.tdlists.length + 1,
+        title: this.state.inputValue,
+        done: false,
+        created_at: Date(),
+        updated_at: Date()
+      };
+       
+      this.setState({
+        tdlists: [...this.state.tdlists, newList]
+      });
+
+      postList(newList);
+    }
   }
+
+  handleChange = event => {
+    this.setState({ inputValue: event.target.value });
+  };
 
   render() {
     return (
@@ -28,7 +51,9 @@ class TdlistsContainer extends Component {
             type="text"
             placeholder="Input a New Task and Press Enter"
             maxLength="75"
-            onKeyPress={this.createTodo}
+            onKeyPress={this.createList}
+            value={this.state.inputValue}
+            onChange={event => this.handleChange(event)}
           />
         </div>
         <div className="wrapItems">
@@ -53,7 +78,7 @@ class TdlistsContainer extends Component {
         </div>
       </div>
     );
-  }
-}
+  };
+};
 
 export default TdlistsContainer;
