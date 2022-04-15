@@ -3,21 +3,31 @@ body {
   font: Arial;
 }
 
-.mainContainer {
+.topHeading {
+  background-color: cadetblue;
+  width: 100%;
+  margin: -2rem 0 -3rem 0;
+  height: 7.25rem;
+}
+
+h1 {
+  color: white;
+  font-size: 60px;
+}
+
+.tdlistsContainer {
   width: 70%;
   height: 500px;
   position: relative;
   border-radius: 7px;
   margin: 0 auto;
+  top: 2.75rem;
 }
 
 .wrapItems {
   position: absolute;
-  bottom: 55px;
-  top: 170px;
   right: 0;
   left: 0;
-  overflow: auto;
 }
 
 .topHeading {
@@ -84,14 +94,13 @@ input[placeholder] {
 }
 
 .taskContainer {
-  padding: 15px;
+  padding: 35px 15px 10px 15px;
 }
 
 .removeItemButton {
-  float: top;
   float: right;
   visibility: hidden;
-  color: darkred;
+  color: cadetblue;
   background: rgba(0, 0, 0, 0);
   font-size: 25px;
   font-weight: bold;
@@ -105,7 +114,7 @@ input[placeholder] {
 }
 
 .taskContainer .newTask {
-  padding: 10px;
+  padding: 10px 10px 10px 22px;
   width: 100%;
   box-sizing: border-box;
   border-radius: 25px;

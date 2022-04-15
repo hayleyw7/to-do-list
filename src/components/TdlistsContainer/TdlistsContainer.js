@@ -77,13 +77,13 @@ class TdlistsContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className='tdlistsContainer'>
         <div className="taskContainer">
           <input
             className="newTask"
             type="text"
-            placeholder="Input a New Task and Press Enter"
-            maxLength="75"
+            placeholder="Type Task & Press Enter"
+            maxLength="15"
             onKeyPress={this.createList}
             value={this.state.inputValue}
             onChange={event => this.handleChange(event)}
