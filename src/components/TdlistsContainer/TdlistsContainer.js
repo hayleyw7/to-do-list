@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getLists, postList } from '../../util/apiCalls';
+import { getLists, postList, deleteList } from '../../util/apiCalls';
 
 class TdlistsContainer extends Component {
   constructor(props) {
@@ -15,9 +15,11 @@ class TdlistsContainer extends Component {
     .then(data => this.setState({tdlists: data}))
   };
 
-  deleteList = (id) => {
+  removeList = (id) => {
     const filteredLists = this.state.tdlists.filter(list => list.id !== id);
     this.setState({ tdlists: filteredLists });
+
+    deleteList(id);
   };
 
   createList = event => {
@@ -66,7 +68,7 @@ class TdlistsContainer extends Component {
 
                   <span
                     className="removeItemButton"
-                    onClick={() => this.deleteList(tdlist.id)} 
+                    onClick={() => this.removeList(tdlist.id)} 
                   >
                     x
                   </span>

@@ -16,9 +16,12 @@ export const postList = (newList) => {
   .then(res => res.json())
 }
 
-// export const deleteList = () => {
-//   return fetch('https://tdlist-api.herokuapp.com/api/version1/tdlists', {
-//     method: 'DELETE'
-//   })
-//   .then(res => res.json())
-// }
+export const deleteList = (id) => {
+  return fetch(`https://tdlist-api.herokuapp.com/api/version1/tdlists/${id}`, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+  })
+  .then(res => res.json())
+}
