@@ -1,5 +1,10 @@
+body {
+  font-family: Arial;
+  font: Arial;
+}
+
 .mainContainer {
-  width: 35%;
+  width: 70%;
   height: 500px;
   position: relative;
   border-radius: 7px;
@@ -17,7 +22,6 @@
 
 .topHeading {
   color: rgb(48, 2, 2);
-  font-family: "Times New Roman", Times, serif, sans-serif;
   padding: 7px;
   text-align: center;
 }
@@ -43,7 +47,6 @@ input.itemCheckbox {
 }
 
 li.item {
-  font-family: "Times New Roman", Times, serif;
   list-style-type: none;
   font-size: 1.5em;
   border-bottom: 2px solid rgba(80, 2, 90, 0.411);
@@ -68,7 +71,7 @@ input.itemCheckbox:checked:after {
 }
 
 input.itemCheckbox:checked + label.itemDisplay {
-  color: #f807a8;
+  color: lightgray;
   text-decoration: line-through;
 }
 
@@ -85,9 +88,10 @@ input[placeholder] {
 }
 
 .removeItemButton {
+  float: top;
   float: right;
   visibility: hidden;
-  color: red;
+  color: darkred;
   background: rgba(0, 0, 0, 0);
   font-size: 25px;
   font-weight: bold;

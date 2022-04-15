@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { getLists, postList, deleteList } from '../../util/apiCalls';
+import update from "immutability-helper";
 
 class TdlistsContainer extends Component {
   constructor(props) {
@@ -41,6 +42,31 @@ class TdlistsContainer extends Component {
     }
   }
 
+  modifyTdlist = (e, id) => {
+    return fetch(`https://tdlist-api.herokuapp.com/api/version1/tdlists/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ tdlist: { done: e.target.checked } })
+    })
+    .then((res) => {
+      console.log(this.state.tdlists)
+      
+      const index = this.state.tdlists.findIndex((list) => 
+        list.id === res.data.id
+      );
+
+      const tdlists = update(this.state.tdlists, {
+        [index]: { $set: res.data },
+      });
+
+      this.setState({
+        tdlists: tdlists,
+      });
+    })
+  }
+
   clearInput = () => {
     this.setState({ inputValue: "" });
   }
@@ -68,7 +94,14 @@ class TdlistsContainer extends Component {
             {this.state.tdlists.map((tdlist) => {
               return (
                 <li className="item" tdlist={tdlist} key={tdlist.id}>
-                  <input className="itemCheckbox" type="checkbox" />
+
+                  <input
+                    className="itemCheckbox"
+                    type="checkbox"
+                    checked={tdlist.done}
+                    onChange={(e) => this.modifyTdlist(e, tdlist.id)}
+                  />
+
                   <label className="itemDisplay">{tdlist.title}</label>
 
                   <span
