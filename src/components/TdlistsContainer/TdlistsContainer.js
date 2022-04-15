@@ -33,11 +33,16 @@ class TdlistsContainer extends Component {
       };
        
       this.setState({
-        tdlists: [...this.state.tdlists, newList]
+        tdlists: [newList, ...this.state.tdlists]
       });
 
       postList(newList);
+      this.clearInput();
     }
+  }
+
+  clearInput = () => {
+    this.setState({ inputValue: "" });
   }
 
   handleChange = event => {
