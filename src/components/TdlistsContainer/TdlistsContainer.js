@@ -43,16 +43,7 @@ function TdlistsContainer(props) {
       },
       body: JSON.stringify({ tdlist: { done: e.target.checked } })
     })
-    .then((res) => {
-      
-      var index = tdlists.findIndex((list) => 
-        list.id === res.data.id
-      );
-
-      var tdlists = update(tdlists, {
-        [index]: { $set: res.data },
-      });
-
+    .then(() => {
       setTdlists(tdlists)
     })
   }
