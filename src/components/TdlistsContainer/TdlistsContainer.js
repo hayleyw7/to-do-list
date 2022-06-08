@@ -9,7 +9,7 @@ function TdlistsContainer(props) {
   useEffect(() => {
     getLists()
     .then(data => setTdlists(data))
-  }, [])
+  }, [tdlists, setTdlists])
 
   const removeList = (id) => {
     const filteredLists = tdlists.filter(list => list.id !== id);
@@ -36,7 +36,6 @@ function TdlistsContainer(props) {
   }
 
   const modifyTdlist = (e, tdlist) => {
-
     return fetch(`https://tdlist-api.herokuapp.com/api/version1/tdlists/${tdlist.id}`, {
       method: 'PUT',
       headers: {
@@ -44,16 +43,7 @@ function TdlistsContainer(props) {
       },
       body: JSON.stringify({ tdlist: { done: e.target.checked } })
     })
-    .then((res) => {
-      
-      const index = tdlists.findIndex((list) => 
-        list.id === res.data.id
-      );
-
-      const tdlists = update(tdlists, {
-        [index]: { $set: res.data },
-      });
-
+    .then(() => {
       setTdlists(tdlists)
     })
   }
