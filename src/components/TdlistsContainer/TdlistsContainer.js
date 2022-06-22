@@ -9,7 +9,7 @@ function TdlistsContainer(props) {
   useEffect(() => {
     getLists()
     .then(data => setTdlists(data))
-  }, [tdlists, setTdlists])
+  }, [tdlists, setTdlists]);
 
   const removeList = (id) => {
     const filteredLists = tdlists.filter(list => list.id !== id);
@@ -23,17 +23,14 @@ function TdlistsContainer(props) {
       let newList = {
         id: Date(),
         title: inputValue,
-        done: false,
-        created_at: Date(),
-        updated_at: Date()
+        done: false
       };
        
       setTdlists([newList, ...tdlists]);
-
       postList(newList);
       clearInput();
-    }
-  }
+    };
+  };
 
   const modifyTdlist = (e, tdlist) => {
     return fetch(`https://td-list-api.herokuapp.com/api/version1/tdlists/${tdlist.id}`, {
@@ -54,60 +51,66 @@ function TdlistsContainer(props) {
       });
 
       setTdlists(tdlists)
-    })
-  }
+    });
+  };
 
   const clearInput = () => {
-    setInputValue("")
-  }
+    setInputValue("");
+  };
 
   const handleChange = event => {
-    setInputValue(event.target.value)
+    setInputValue(event.target.value);
   };
+
+  const displaySearch = () => {
+    return <div className="taskContainer">
+      <input
+      className="newTask"
+      type="text"
+      placeholder="Type Task & Press Enter"
+      maxLength="15"
+      onKeyPress={createList}
+      value={inputValue}
+      onChange={event => handleChange(event)}
+    /></div>
+  };
+
+  const displayLists = () => {
+    return <div className="wrapItems">
+      <ul className="listItems">
+        {tdlists.map((tdlist) => {
+          return (
+            <li className="item" tdlist={tdlist} key={tdlist.id}>
+
+              <input
+                className="itemCheckbox"
+                type="checkbox"
+                checked={tdlist.done}
+                onChange={(e) => modifyTdlist(e, tdlist)}
+              />
+
+              <label className="itemDisplay">{tdlist.title}</label>
+
+              <span
+                className="removeItemButton"
+                onClick={() => removeList(tdlist.id)} 
+              >
+                x
+              </span>
+
+            </li>
+          );
+        })};
+      </ul>
+    </div>
+  }
 
   return (
     <div className='tdlistsContainer'>
-      <div className="taskContainer">
-        <input
-          className="newTask"
-          type="text"
-          placeholder="Type Task & Press Enter"
-          maxLength="15"
-          onKeyPress={createList}
-          value={inputValue}
-          onChange={event => handleChange(event)}
-        />
-      </div>
-      <div className="wrapItems">
-        <ul className="listItems">
-          {tdlists.map((tdlist) => {
-            return (
-              <li className="item" tdlist={tdlist} key={tdlist.id}>
-
-                <input
-                  className="itemCheckbox"
-                  type="checkbox"
-                  checked={tdlist.done}
-                  onChange={(e) => modifyTdlist(e, tdlist)}
-                />
-
-                <label className="itemDisplay">{tdlist.title}</label>
-
-                <span
-                  className="removeItemButton"
-                  onClick={() => removeList(tdlist.id)} 
-                >
-                  x
-                </span>
-
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      {displaySearch()}
+      {displayLists()}
     </div>
   );
-
 };
 
 export default TdlistsContainer;
