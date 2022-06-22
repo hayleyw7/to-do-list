@@ -21,7 +21,7 @@ function TdlistsContainer(props) {
   const createList = event => {
     if (event.key === "Enter" && !(event.target.value === "")) {  
       let newList = {
-        id: tdlists.length + 1,
+        id: Date(),
         title: inputValue,
         done: false,
         created_at: Date(),
