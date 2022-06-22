@@ -11,22 +11,22 @@ const ListContainer = () => {
     .then(data => setList(data))
   }, [list, setList]);
 
-  const removeList = (id) => {
+  const removeTask = (id) => {
     const filteredLists = list.filter(list => list.id !== id);
     setList(filteredLists);
     deleteTask(id);
   };
 
-  const createList = event => {
+  const createTask = event => {
     if (event.key === "Enter" && !(event.target.value === "")) {  
-      let newList = {
+      let newTask = {
         id: Date(),
         title: inputValue,
         done: false
       };
        
-      setList([newList, ...list]);
-      postTask(newList);
+      setList([newTask, ...list]);
+      postTask(newTask);
       clearInput();
     };
   };
@@ -46,31 +46,31 @@ const ListContainer = () => {
       type="text"
       placeholder="Type Task & Press Enter"
       maxLength="15"
-      onKeyPress={createList}
+      onKeyPress={createTask}
       value={inputValue}
       onChange={event => handleChange(event)}
     /></div>
   };
 
   const displayLists = () => {
-    return <div className="wrapItems">
-      <ul className="listItems">
-        {list.map((tdlist) => {
+    return <div className="wrap-items">
+      <ul className="list-items">
+        {list.map((task) => {
           return (
-            <li className="item" tdlist={tdlist} key={tdlist.id}>
+            <li className="item" task={task} key={task.id}>
 
               <input
                 className="itemCheckbox"
                 type="checkbox"
-                checked={tdlist.done}
-                onChange={(e) => modifyTask(e, tdlist, setList)}
+                checked={task.done}
+                onChange={(e) => modifyTask(e, task, setList)}
               />
 
-              <label className="itemDisplay">{tdlist.title}</label>
+              <label className="itemDisplay">{task.title}</label>
 
               <span
                 className="removeItemButton"
-                onClick={() => removeList(tdlist.id)} 
+                onClick={() => removeTask(task.id)} 
               >
                 x
               </span>
@@ -83,7 +83,7 @@ const ListContainer = () => {
   }
 
   return (
-    <div className='ListContainer'>
+    <div className='list-container'>
       {displaySearch()}
       {displayLists()}
     </div>

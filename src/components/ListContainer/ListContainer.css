@@ -1,4 +1,4 @@
-.topHeading {
+.top-heading {
   background-color: cadetblue;
   width: 100%;
   margin: -2rem 0 -3rem 0;
@@ -10,7 +10,7 @@ h1 {
   font-size: 60px;
 }
 
-.ListContainer {
+.list-container {
   width: 70%;
   height: 500px;
   position: relative;
@@ -19,19 +19,19 @@ h1 {
   top: 2.75rem;
 }
 
-.wrapItems {
+.wrap-items {
   position: absolute;
   right: 0;
   left: 0;
 }
 
-.topHeading {
+.top-heading {
   color: rgb(48, 2, 2);
   padding: 7px;
   text-align: center;
 }
 
-ul.listItems {
+ul.list-items {
   padding: 0 30px;
 }
 

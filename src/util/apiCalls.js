@@ -7,13 +7,13 @@ export const getList = () => {
   .then(res => res.json())
 };
 
-export const postTask = (newList) => {
+export const postTask = (newTask) => {
   return fetch('https://td-list-api.herokuapp.com/api/version1/tdlists', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(newList),
+    body: JSON.stringify(newTask),
   })
   .then(res => res.json())
 };

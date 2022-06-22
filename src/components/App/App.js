@@ -6,7 +6,7 @@ class App extends Component {
   render() {
     return (
       <div className="mainContainer">
-        <div className="topHeading">
+        <div className="top-heading">
           <h1>To-Do List</h1>
         </div>
         <ListContainer />
