@@ -1,14 +1,14 @@
 import update from "immutability-helper";
 
 export const getLists = () => {
-  return fetch('https://tdlist-api.herokuapp.com/api/version1/tdlists', {
+  return fetch('https://td-list-api.herokuapp.com/api/version1/tdlists', {
     method : "GET"
   })
   .then(res => res.json())
 }
 
 export const postList = (newList) => {
-  return fetch('https://tdlist-api.herokuapp.com/api/version1/tdlists', {
+  return fetch('https://td-list-api.herokuapp.com/api/version1/tdlists', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -19,7 +19,7 @@ export const postList = (newList) => {
 }
 
 export const deleteList = (id) => {
-  return fetch(`https://tdlist-api.herokuapp.com/api/version1/tdlists/${id}`, {
+  return fetch(`https://td-list-api.herokuapp.com/api/version1/tdlists/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'

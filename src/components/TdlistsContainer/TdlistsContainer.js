@@ -36,7 +36,7 @@ function TdlistsContainer(props) {
   }
 
   const modifyTdlist = (e, tdlist) => {
-    return fetch(`https://tdlist-api.herokuapp.com/api/version1/tdlists/${tdlist.id}`, {
+    return fetch(`https://td-list-api.herokuapp.com/api/version1/tdlists/${tdlist.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
