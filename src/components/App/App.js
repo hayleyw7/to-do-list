@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import ListContainer from "../ListContainer/ListContainer";
+import List from "../List/List";
 
 class App extends Component {
   render() {
@@ -9,7 +9,7 @@ class App extends Component {
         <div className="header">
           <h1>To-Do List</h1>
         </div>
-        <ListContainer />
+        <List />
       </div>
     );
   }

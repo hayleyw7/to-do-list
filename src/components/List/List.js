@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import "./ListContainer.css";
+import "./List.css";
 import { getList, deleteTask, modifyTask } from '../../util/apiCalls';
 import Search from "../Search/Search";
 
-const ListContainer = () => {
+const List = () => {
   const [list, setList] = useState([]);
 
   useEffect(() => {
@@ -53,4 +53,4 @@ const ListContainer = () => {
   );
 };
 
-export default ListContainer;
+export default List;
