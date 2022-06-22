@@ -34,8 +34,7 @@ const Search = () => {
   };
 
   return (
-    <div className="app">
-      <input
+    <input
       className="search-bar"
       type="text"
       placeholder="Type Task & Press Enter"
@@ -43,7 +42,7 @@ const Search = () => {
       onKeyPress={createTask}
       value={inputValue}
       onChange={event => handleChange(event)}
-    /></div>
+    />
   );
 };
 

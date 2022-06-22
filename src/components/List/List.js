@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./List.css";
 import { getList, deleteTask, modifyTask } from '../../util/apiCalls';
-import Search from "../Search/Search";
+
 
 const List = () => {
   const [list, setList] = useState([]);
@@ -46,8 +46,7 @@ const List = () => {
   }
 
   return (
-    <div className='main-container'>
-      <Search />
+    <div>
       {displayList()}
     </div>
   );

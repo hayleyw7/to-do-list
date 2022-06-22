@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import List from "../List/List";
+import Search from "../Search/Search";
 
 class App extends Component {
   render() {
@@ -9,7 +10,10 @@ class App extends Component {
         <div className="header">
           <h1>To-Do List</h1>
         </div>
-        <List />
+        <div className='main-container'>
+          <Search />
+          <List />
+        </div>
       </div>
     );
   }

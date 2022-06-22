@@ -5,3 +5,17 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+.header {
+  background-color: cadetblue;
+  width: 100%;
+  margin: -2rem 0 -3rem 0;
+  height: 7.25rem;
+  padding: 7px;
+}
+
+h1 {
+  color: white;
+  font-size: 60px;
+  text-align: center;
+}
