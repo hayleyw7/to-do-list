@@ -54,7 +54,7 @@ h1 {
 
 /* checkbox */
 
-input.checkbox {
+.checkbox {
   margin-right: 8px;
   position: relative;
   -webkit-appearance: none;

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./ListContainer.css";
-import { getList, postTask, deleteTask, modifyTask } from '../../util/apiCalls';
+import { getList, deleteTask, modifyTask } from '../../util/apiCalls';
+import Search from "../Search/Search";
 
 const ListContainer = () => {
   const [list, setList] = useState([]);
-  const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
     getList()
@@ -15,41 +15,6 @@ const ListContainer = () => {
     const filteredLists = list.filter(list => list.id !== id);
     setList(filteredLists);
     deleteTask(id);
-  };
-
-  const createTask = event => {
-    if (event.key === "Enter" && !(event.target.value === "")) {  
-      let newTask = {
-        id: Date(),
-        title: inputValue,
-        done: false
-      };
-       
-      setList([newTask, ...list]);
-      postTask(newTask);
-      clearInput();
-    };
-  };
-
-  const clearInput = () => {
-    setInputValue("");
-  };
-
-  const handleChange = event => {
-    setInputValue(event.target.value);
-  };
-
-  const displaySearch = () => {
-    return <div className="app">
-      <input
-      className="search-bar"
-      type="text"
-      placeholder="Type Task & Press Enter"
-      maxLength="15"
-      onKeyPress={createTask}
-      value={inputValue}
-      onChange={event => handleChange(event)}
-    /></div>
   };
 
   const displayList = () => {
@@ -82,7 +47,7 @@ const ListContainer = () => {
 
   return (
     <div className='main-container'>
-      {displaySearch()}
+      <Search />
       {displayList()}
     </div>
   );
