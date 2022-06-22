@@ -6,7 +6,7 @@ This is the front-end from a Section article called "[How to Integrate a React A
 
 ## Deployment
 
-[The deployment can be accessed here.](https://td-list.surge.sh/)
+[The deployment can be accessed here.](https://td-list.surge.sh/) 
 
 ## API
 
