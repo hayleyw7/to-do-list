@@ -40,9 +40,9 @@ const ListContainer = () => {
   };
 
   const displaySearch = () => {
-    return <div className="taskContainer">
+    return <div className="app">
       <input
-      className="newTask"
+      className="search-bar"
       type="text"
       placeholder="Type Task & Press Enter"
       maxLength="15"
@@ -52,40 +52,38 @@ const ListContainer = () => {
     /></div>
   };
 
-  const displayLists = () => {
-    return <div className="wrap-items">
-      <ul className="list-items">
-        {list.map((task) => {
-          return (
-            <li className="item" task={task} key={task.id}>
+  const displayList = () => {
+    return <ul className="list">
+      {list.map((task) => {
+        return (
+          <li className="task" task={task} key={task.id}>
 
-              <input
-                className="itemCheckbox"
-                type="checkbox"
-                checked={task.done}
-                onChange={(e) => modifyTask(e, task, setList)}
-              />
+            <input
+              className="checkbox"
+              type="checkbox"
+              checked={task.done}
+              onChange={(e) => modifyTask(e, task, setList)}
+            />
 
-              <label className="itemDisplay">{task.title}</label>
+            <label className="task-display">{task.title}</label>
 
-              <span
-                className="removeItemButton"
-                onClick={() => removeTask(task.id)} 
-              >
-                x
-              </span>
+            <span
+              className="delete-btn"
+              onClick={() => removeTask(task.id)} 
+            >
+              x
+            </span>
 
-            </li>
-          );
-        })};
-      </ul>
-    </div>
+          </li>
+        );
+      })}
+    </ul>
   }
 
   return (
-    <div className='list-container'>
+    <div className='main-container'>
       {displaySearch()}
-      {displayLists()}
+      {displayList()}
     </div>
   );
 };

@@ -1,4 +1,6 @@
-.top-heading {
+/* general */
+
+.header {
   background-color: cadetblue;
   width: 100%;
   margin: -2rem 0 -3rem 0;
@@ -8,34 +10,52 @@
 h1 {
   color: white;
   font-size: 60px;
+  text-align: center;
 }
 
-.list-container {
+/* parent components */
+
+.header {
+  padding: 7px;
+}
+
+.app {
+  padding: 35px 15px 10px 15px;
+}
+
+.search-bar {
+  padding: 10px 10px 10px 22px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 25px;
+  font-size: 1.2em;
+}
+
+.main-container {
   width: 70%;
   height: 500px;
   position: relative;
   border-radius: 7px;
   margin: 0 auto;
   top: 2.75rem;
-}
-
-.wrap-items {
-  position: absolute;
-  right: 0;
-  left: 0;
-}
-
-.top-heading {
-  color: rgb(48, 2, 2);
-  padding: 7px;
-  text-align: center;
-}
-
-ul.list-items {
   padding: 0 30px;
 }
 
-input.itemCheckbox {
+.list {
+  padding: 0 30px;
+}
+
+.task {
+  list-style-type: none;
+  font-size: 1.5em;
+  border-bottom: 2px solid rgba(80, 2, 90, 0.411);
+  padding: 5px 0;
+  background-color: yellow;
+}
+
+/* checkbox */
+
+input.checkbox {
   margin-right: 8px;
   position: relative;
   -webkit-appearance: none;
@@ -51,19 +71,7 @@ input.itemCheckbox {
   font-weight: bold;
 }
 
-li.item {
-  list-style-type: none;
-  font-size: 1.5em;
-  border-bottom: 2px solid rgba(80, 2, 90, 0.411);
-  padding: 5px 0;
-}
-
-li.item:hover .removeItemButton {
-  opacity: 2;
-  visibility: visible;
-}
-
-input.itemCheckbox:checked:after {
+.checkbox:checked:after {
   color: green;
   width: 15px;
   content: "\2713";
@@ -75,24 +83,18 @@ input.itemCheckbox:checked:after {
   bottom: 1.8px;
 }
 
-input.itemCheckbox:checked + label.itemDisplay {
+.checkbox:checked + .task-display {
   color: lightgray;
   text-decoration: line-through;
 }
 
-input.itemCheckbox + label.itemDisplay {
+.checkbox + .task-display {
   color: black;
 }
 
-input[placeholder] {
-  font-size: 1.2em;
-}
+/* delete button */
 
-.taskContainer {
-  padding: 35px 15px 10px 15px;
-}
-
-.removeItemButton {
+.delete-btn {
   float: right;
   visibility: hidden;
   color: cadetblue;
@@ -108,9 +110,7 @@ input[placeholder] {
   cursor: pointer;
 }
 
-.taskContainer .newTask {
-  padding: 10px 10px 10px 22px;
-  width: 100%;
-  box-sizing: border-box;
-  border-radius: 25px;
+.task:hover .delete-btn {
+  opacity: 2;
+  visibility: visible;
 }
