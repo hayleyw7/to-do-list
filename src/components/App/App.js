@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import TdlistsContainer from "../TdlistsContainer/TdlistsContainer";
+import ListContainer from "../ListContainer/ListContainer";
 
 class App extends Component {
   render() {
@@ -9,7 +9,7 @@ class App extends Component {
         <div className="topHeading">
           <h1>To-Do List</h1>
         </div>
-        <TdlistsContainer />
+        <ListContainer />
       </div>
     );
   }

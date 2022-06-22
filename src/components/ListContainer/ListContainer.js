@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { getLists, postList, deleteList, modifyTdlist } from '../../util/apiCalls';
+import "./ListContainer.css";
+import { getList, postTask, deleteTask, modifyTask } from '../../util/apiCalls';
 
-const TdlistsContainer = () => {
-  const [tdlists, setTdlists] = useState([]);
+const ListContainer = () => {
+  const [list, setList] = useState([]);
   const [inputValue, setInputValue] = useState("");
 
   useEffect(() => {
-    getLists()
-    .then(data => setTdlists(data))
-  }, [tdlists, setTdlists]);
+    getList()
+    .then(data => setList(data))
+  }, [list, setList]);
 
   const removeList = (id) => {
-    const filteredLists = tdlists.filter(list => list.id !== id);
-    setTdlists(filteredLists);
-    deleteList(id);
+    const filteredLists = list.filter(list => list.id !== id);
+    setList(filteredLists);
+    deleteTask(id);
   };
 
   const createList = event => {
@@ -24,8 +25,8 @@ const TdlistsContainer = () => {
         done: false
       };
        
-      setTdlists([newList, ...tdlists]);
-      postList(newList);
+      setList([newList, ...list]);
+      postTask(newList);
       clearInput();
     };
   };
@@ -54,7 +55,7 @@ const TdlistsContainer = () => {
   const displayLists = () => {
     return <div className="wrapItems">
       <ul className="listItems">
-        {tdlists.map((tdlist) => {
+        {list.map((tdlist) => {
           return (
             <li className="item" tdlist={tdlist} key={tdlist.id}>
 
@@ -62,7 +63,7 @@ const TdlistsContainer = () => {
                 className="itemCheckbox"
                 type="checkbox"
                 checked={tdlist.done}
-                onChange={(e) => modifyTdlist(e, tdlist, setTdlists)}
+                onChange={(e) => modifyTask(e, tdlist, setList)}
               />
 
               <label className="itemDisplay">{tdlist.title}</label>
@@ -82,11 +83,11 @@ const TdlistsContainer = () => {
   }
 
   return (
-    <div className='tdlistsContainer'>
+    <div className='ListContainer'>
       {displaySearch()}
       {displayLists()}
     </div>
   );
 };
 
-export default TdlistsContainer;
+export default ListContainer;
