@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { getLists, postList, deleteList } from '../../util/apiCalls';
-import update from "immutability-helper";
+import { getLists, postList, deleteList, modifyTdlist } from '../../util/apiCalls';
 
-function TdlistsContainer(props) {
+const TdlistsContainer = () => {
   const [tdlists, setTdlists] = useState([]);
   const [inputValue, setInputValue] = useState("");
 
@@ -14,7 +13,6 @@ function TdlistsContainer(props) {
   const removeList = (id) => {
     const filteredLists = tdlists.filter(list => list.id !== id);
     setTdlists(filteredLists);
-
     deleteList(id);
   };
 
@@ -30,28 +28,6 @@ function TdlistsContainer(props) {
       postList(newList);
       clearInput();
     };
-  };
-
-  const modifyTdlist = (e, tdlist) => {
-    return fetch(`https://td-list-api.herokuapp.com/api/version1/tdlists/${tdlist.id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ tdlist: { done: e.target.checked } })
-    })
-    .then((res) => {
-      
-      var index = tdlists.findIndex((list) => 
-        list.id === res.data.id
-      );
-
-      var tdlists = update(tdlists, {
-        [index]: { $set: res.data },
-      });
-
-      setTdlists(tdlists)
-    });
   };
 
   const clearInput = () => {
@@ -86,7 +62,7 @@ function TdlistsContainer(props) {
                 className="itemCheckbox"
                 type="checkbox"
                 checked={tdlist.done}
-                onChange={(e) => modifyTdlist(e, tdlist)}
+                onChange={(e) => modifyTdlist(e, tdlist, setTdlists)}
               />
 
               <label className="itemDisplay">{tdlist.title}</label>
