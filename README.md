@@ -10,4 +10,4 @@ This is the front-end from a Section article called "[How to Integrate a React A
 
 ## API
 
-[The API repo can be accessed here.](https://github.com/hwitherellIDBS/tdlist-api)
+[The API repo can be accessed here.](https://github.com/hayleyw7/tdlist-api)
